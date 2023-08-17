@@ -1,5 +1,9 @@
 # Embe Bot
-A quick and simple Python bot I created that utilizes services such as vxtwitter, vxtiktok, and ddinstagram in one bot to properly embed media for the user.
+A quick and silly little Python bot I created that utilizes services such as vxtwitter, vxtiktok, and ddinstagram in one bot to properly embed media for the user.
+
+I probably won't update it as frequently since its in a good enough state for me, but perhaps I can improve 
+upon it over time.
+
 # How it works
 
 Rather than re-inventing the wheel and creating a way to fix embeds on Discord for every major social media site -- I opted to automate the manual way of using these aforementioned services so it is done for you.
