@@ -30,3 +30,14 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 
 
 
+## Thanks
+This bot definitely wouldn't even exist without the heavy lifting of these projects, I just merely combined them to make the Discord experience slightly more bearable. So I thank these people orders of magnitude smarter than me for their great work:
+
+[vxtiktok - dylanpdx](https://github.com/dylanpdx/vxtiktok)
+[BetterTwitFix - dylanpdx](https://github.com/dylanpdx/BetterTwitFix)
+[InstaFix - Wikidepia](https://github.com/Wikidepia/InstaFix)
+# 
+Note: this thing is licensed under do whatever you want I dont care
+
+
+
