@@ -14,13 +14,13 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 
 ## Building and hosting it yourself (on Docker)
 
-** This will require you to make an application in the [Discord Developer Portal](https://discord.com/developers/applications)
+*** This will require you to make an application in the [Discord Developer Portal](https://discord.com/developers/applications)
 		- Create a New Application > Go to the Bot tab
 		- Turn on all Privileged Gateway intents
 		- Under Bot Permissions, give it Text Permissions
 		-  Add to your server***
 - Clone the github repository
 - in the /embebot directory build the image via ``docker build .``
-- in docker-compose.yml modify the line ``DISCORD_BOT_TOKEN =`` and add in your own Bot token by pressing "Reset Token" in the Bot tab and copy it to the line.
+- in docker-compose.yml modify the line ``DISCORD_BOT_TOKEN =`` and add in your own Bot token by pressing "Reset Token" in the Bot tab and copy it to the line. 
 
 
