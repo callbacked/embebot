@@ -7,10 +7,20 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 ![](https://github.com/callbacked/embebot/blob/main/assets/manual-embed.gif)
 
 ## Simply Paste your link and send.
-
 ![](https://github.com/callbacked/embebot/blob/main/assets/embed.gif)
 
-Just post a link from either twitter.com, x.com, tiktok.com, instagram.com (reels only for now), and Embe Bot will detect it and reply to the original message with the converted link.
+**Just post a link from either twitter.com, x.com, tiktok.com, instagram.com (reels only for now), and Embe Bot will detect it and reply to the original message with the converted link.**
 
 
-## Switch to another file
+## Building and hosting it yourself
+
+**- This will require you to make an application in the [Discord Developer Portal](https://discord.com/developers/applications)
+		- Create a New Application > Go to the Bot tab
+		- Turn on all Privileged Gateway intents
+		- Under Bot Permissions, give it Text Permissions
+		-  Add to your server***
+- Clone the github repository
+- in the /embebot directory build the image via ``docker build .``
+- in docker-compose.yml modify the line ``DISCORD_BOT_TOKEN =`` and add in your own Bot token by pressing "Reset Token" in the Bot tab and copy it to the line.
+
+
