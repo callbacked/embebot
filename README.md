@@ -14,7 +14,7 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 
 ## Building and hosting it yourself
 
-**- This will require you to make an application in the [Discord Developer Portal](https://discord.com/developers/applications)
+** This will require you to make an application in the [Discord Developer Portal](https://discord.com/developers/applications)
 		- Create a New Application > Go to the Bot tab
 		- Turn on all Privileged Gateway intents
 		- Under Bot Permissions, give it Text Permissions
