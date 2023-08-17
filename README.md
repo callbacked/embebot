@@ -12,7 +12,7 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 **Just post a link from either twitter.com, x.com, tiktok.com, instagram.com (reels only for now), and Embe Bot will detect it and reply to the original message with the converted link.**
 
 
-## Building and hosting it yourself
+## Building and hosting it yourself (on Docker)
 
 ** This will require you to make an application in the [Discord Developer Portal](https://discord.com/developers/applications)
 		- Create a New Application > Go to the Bot tab
