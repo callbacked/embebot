@@ -85,6 +85,6 @@ async def on_message(message):
             # generates the embed link based on the link it has found
             vx_url = matched_link.group(0).replace(base_link, vx_link)
             logging.info(f'Sending {vx_link} link: {vx_url}')
-            await message.reply(vx_url, mention_author=False)
+            await message.reply("[⠀]" + "(" + vx_url + ")", mention_author=False)
     
 client.run(TOKEN)
