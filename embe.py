@@ -43,7 +43,7 @@ async def suppress_embed_with_retry(message, max_retries=3):
             logging.warning(f'Failed to suppress embed preview on attempt {i + 1}: {e}')
     return False
 
-async def wait_for_embed(message, timeout=5): ##changed from 10 to 1 because of discord vanilla embed failure for twitter on 6/30
+async def wait_for_embed(message, timeout=1): ##changed from 10 to 1 because of discord vanilla embed failure for twitter on 6/30
     logging.info(f'Starting to wait for embed for message ID: {message.id}')
     for _ in range(timeout * 2):
         await asyncio.sleep(0.5)
