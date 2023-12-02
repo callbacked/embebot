@@ -43,7 +43,7 @@ async def suppress_embed_with_retry(message, max_retries=3):
             logging.warning(f'Failed to suppress embed preview on attempt {i + 1}: {e}')
     return False
 
-async def wait_for_embed(message, timeout=1): ##changed from 10 to 1 because of discord vanilla embed failure for twitter on 6/30
+async def wait_for_embed(message, timeout=3): ##changed from 10 to 1 because of discord vanilla embed failure for twitter on 6/30
     logging.info(f'Starting to wait for embed for message ID: {message.id}')
     for _ in range(timeout * 2):
         await asyncio.sleep(0.5)
@@ -61,6 +61,7 @@ async def on_message(message):
     x_match = re.search(r'https?://(?:www\.)?x\.com/[\w\-\_]+/status/\d+', message.content)
     tiktok_match = re.search(r'https?://(?:www\.)?tiktok\.com/.+', message.content)
     instagram_reel_match = re.search(r'https://www\.instagram\.com/reel/.*', message.content)
+    reddit_match = re.search(r'https?://(?:www\.)?reddit\.com/.+', message.content)
     
     # created a tuple to hold the regex link matches, base link, and embed in order to avoid ---
     # -- nested elif statements and create a single function
@@ -70,7 +71,8 @@ async def on_message(message):
     (twitter_match, 'twitter.com', 'vxtwitter.com'), 
     (x_match,'x.com', 'vxtwitter.com'),
     (instagram_reel_match, 'instagram.com', 'ddinstagram.com'),
-    (tiktok_match, 'tiktok.com', 'vxtiktok.com')]
+    (tiktok_match, 'tiktok.com', 'vxtiktok.com'),
+    (reddit_match, 'reddit.com', 'vxreddit.com')]
 
     for matched_link, base_link, vx_link in match:
         if matched_link:
