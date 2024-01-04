@@ -1,7 +1,7 @@
 # Embe Bot
 [![](https://github.com/callbacked/embebot/blob/main/assets/add.png)](https://discord.com/api/oauth2/authorize?client_id=1100908930458198098&permissions=274877983744&scope=applications.commands%20bot)
 
-A quick and silly little Python bot I created that utilizes services such as vxtwitter, vxtiktok, and ddinstagram in one bot to properly embed media for the user.
+A quick and silly little Python bot I created that utilizes services such as vxtwitter, vxtiktok, vxreddit, and ddinstagram in one bot to properly embed media for the user.
 
 I probably won't update it as frequently since its in a good enough state for me, but perhaps I can improve 
 upon it over time.
