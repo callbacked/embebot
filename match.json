@@ -1,0 +1,27 @@
+[
+    {
+        "pattern": "https?://(?:www\\.)?twitter\\.com/[\\w\\-\\_]+/status/\\d+",
+        "base_link": "twitter.com",
+        "vx_link": "vxtwitter.com"
+    },
+    {
+        "pattern": "https?://(?:www\\.)?x\\.com/[\\w\\-\\_]+/status/\\d+",
+        "base_link": "x.com",
+        "vx_link": "vxtwitter.com"
+    },
+    {
+        "pattern": "https?://(?:www\\.)?tiktok\\.com/.+",
+        "base_link": "tiktok.com",
+        "vx_link": "vxtiktok.com"
+    },
+    {
+        "pattern": "https://www\\.instagram\\.com/reel/.*",
+        "base_link": "instagram.com",
+        "vx_link": "ddinstagram.com"
+    },
+    {
+        "pattern": "https?://(?:www\\.)?reddit\\.com/.+",
+        "base_link": "reddit.com",
+        "vx_link": "vxreddit.com"
+    }
+]

@@ -5,6 +5,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY embe.py .
+COPY main.py .
+COPY suppression.py .
+COPY match.json .
+COPY config.ini .
 
-CMD ["python", "embe.py"]
+CMD ["python", "main.py"]
