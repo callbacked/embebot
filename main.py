@@ -4,6 +4,7 @@ import os
 import logging
 import json
 import configparser
+import asyncio
 from logging.handlers import RotatingFileHandler
 from suppression import suppress_embed 
 from suppression import wait_for_embed
@@ -55,20 +56,14 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    
     for item in match_config:
         pattern = re.compile(item["pattern"])
         matched_link = pattern.search(message.content)
 
         if matched_link:
-            embed_found = await wait_for_embed(message)
-            if embed_found:
-                success = await suppress_embed(message)
-                if not success:
-                    logging.warning("Failed to suppress embed preview after multiple attempts.")
-
             vx_url = matched_link.group(0).replace(item["base_link"], item["vx_link"])
             logging.info(f'Sending {item["vx_link"]} link: {vx_url}')
+            asyncio.create_task(suppress_embed(message))
             await message.reply("[⠀]" + "(" + vx_url + ")", mention_author=False)
 
     
