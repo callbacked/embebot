@@ -32,7 +32,7 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 
 Whether it'd be vx/fxtwitter, ddinstagram, vxreddit, sometimes these services get rate limited which can lead to a much slower experience. Because of this you have the option to change the embed link to something else to avoid congestion, which is handy for those who already self-host these services.
 
-Just edit the ``config.ini`` file, set EndpointOverride to "true" and start adding in your own endpoints for any of the services listed. Should you want to switch back, set them as default.
+Just edit the ``config.ini`` file, set ``EndpointOverride`` to ``true`` and start adding in your own endpoints for any of the services listed. Should you want to switch back, set them as default.
 
 For reference, the default embed enpoints are:
 
