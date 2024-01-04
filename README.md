@@ -28,12 +28,27 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 - in the /embebot directory build the image via ``docker build .``
 - in docker-compose.yml modify the line ``DISCORD_BOT_TOKEN =`` and add in your own Bot token by pressing "Reset Token" in the Bot tab and copy it to the line.
 
+## Want to use your own endpoints? No worries
+
+Whether it'd be vx/fxtwitter, ddinstagram, vxreddit, sometimes these services get rate limited which can lead to a much slower experience. Because of this you have the option to change the embed link to something else to avoid congestion, which is handy for those who already self-host these services.
+
+Just edit the config.ini file, set EndpointOverride to "true" and start adding in your own endpoints for any of the services listed. Should you want to switch back, set them as default.
+
+For reference, the default embed enpoints are:
+
+Twitter/X - vxtwitter.com
+Instagram - ddinstagram.com
+Reddit - vxreddit.com
+
+
+
 
 
 ## Thanks
 This bot definitely wouldn't even exist without the heavy lifting of these projects, I just merely combined them to make the Discord experience slightly more bearable. So I thank these people orders of magnitude smarter than me for their great work:
 
 * [vxtiktok - dylanpdx](https://github.com/dylanpdx/vxtiktok)
+* [vxreddit - dylanpdx](https://github.com/dylanpdx/vxReddit)
 * [BetterTwitFix - dylanpdx](https://github.com/dylanpdx/BetterTwitFix)
 * [InstaFix - Wikidepia](https://github.com/Wikidepia/InstaFix)
 # 
