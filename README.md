@@ -12,7 +12,7 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 
 ![](https://github.com/callbacked/embebot/blob/main/assets/manual-embed.gif)
 
-## Simply Paste your link and send.
+## Simply paste your link and send.
 ![](https://github.com/callbacked/embebot/blob/main/assets/embed.gif)
 
 **Just post a link from either twitter.com, x.com, tiktok.com, instagram.com (reels only for now), and Embe Bot will detect it and reply to the original message with the converted link.**
@@ -36,7 +36,7 @@ Whether it'd be vx/fxtwitter, ddinstagram, vxreddit, sometimes these services ge
 
 Just edit the ``config.ini`` file, set ``EndpointOverride`` to ``true`` and start adding in your own endpoints for any of the services listed. Should you want to switch back, set them as default.
 
-For reference, the default embed enpoints are:
+For reference, the default embed endpoints are:
 
 * Twitter/X - vxtwitter.com
 * Instagram - ddinstagram.com
