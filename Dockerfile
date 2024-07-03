@@ -1,13 +1,15 @@
-FROM python:3.10-slim
+FROM golang:1.22
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY main.py .
-COPY suppression.py .
+COPY main.go .
+COPY go.mod .
+COPY go.sum .
+COPY suppression.go .
 COPY match.json .
 COPY config.ini .
 
-CMD ["python", "main.py"]
+RUN go mod download
+RUN go build -o main .
+
+CMD ["./main"]
