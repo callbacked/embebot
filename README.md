@@ -1,5 +1,5 @@
 # Embe Bot
-[![](https://github.com/callbacked/embebot/blob/main/assets/add.png)](https://discord.com/api/oauth2/authorize?client_id=1100908930458198098&permissions=274877983744&scope=applications.commands%20bot)
+[![](https://github.com/callbacked/embebot/blob/main/assets/add.png)](https://discord.com/oauth2/authorize?client_id=1100908930458198098&permissions=27648&integration_type=0&scope=bot)
 
 A quick and silly little bot re-written in Go (originally Python) that utilizes services such as vxtwitter, vxtiktok, vxreddit, and ddinstagram in one bot to properly embed media for the user.
 
@@ -12,7 +12,7 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 
 ![](https://github.com/callbacked/embebot/blob/main/assets/manual-embed.gif)
 
-## Simply paste your link and send.
+## Simply paste your link and send
 ![](https://github.com/callbacked/embebot/blob/main/assets/embed.gif)
 
 **Just post a link from either twitter.com, x.com, tiktok.com, instagram.com (reels only for now), and Embe Bot will detect it and reply to the original message with the converted link.**
@@ -29,6 +29,7 @@ Rather than re-inventing the wheel and creating a way to fix embeds on Discord f
 - Clone the github repository
 - in the /embebot directory build the image via ``docker build .``
 - in docker-compose.yml modify the line ``DISCORD_BOT_TOKEN =`` and add in your own Bot token by pressing "Reset Token" in the Bot tab and copy it to the line.
+- Finally, run ``docker-compose up -d``` (assuming Docker Compose is being used)
 
 ## Want to use your own endpoints? No worries
 
