@@ -10,17 +10,17 @@
         "vx_link": "vxtwitter.com"
     },
     {
-        "pattern": "https?://(?:www\\.)?tiktok\\.com/.+",
+        "pattern": "https?://(?:(?:www|vm)\\.)?tiktok\\.com/[\\w\\-\\_]+/?",
         "base_link": "tiktok.com",
         "vx_link": "vxtiktok.com"
     },
     {
-        "pattern": "https://www\\.instagram\\.com/reel/.*",
+        "pattern": "https://www\\.instagram\\.com/(?:reel|p)/[\\w\\-\\_]+/?",
         "base_link": "instagram.com",
         "vx_link": "ddinstagram.com"
     },
     {
-        "pattern": "https?://(?:www\\.)?reddit\\.com/.+",
+        "pattern": "https?://(?:www\\.)?reddit\\.com/(?:r/[\\w-]+/comments/[\\w-]+(?:/[\\w-]*)?|u/[\\w-]+|[\\w/]+)?(?:\\?[^\\s]*)?",
         "base_link": "reddit.com",
         "vx_link": "vxreddit.com"
     }
