@@ -10,6 +10,7 @@ COPY main.go .
 COPY suppression.go .
 COPY commands.go .
 COPY message.go .
+COPY database.go .
 
 COPY match.json .
 COPY config.ini .
