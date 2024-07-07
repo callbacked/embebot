@@ -3,9 +3,11 @@ FROM golang:1.22
 WORKDIR /app
 
 COPY main.go .
+COPY suppression.go .
+COPY commands.go .
+COPY message.go .
 COPY go.mod .
 COPY go.sum .
-COPY suppression.go .
 COPY match.json .
 COPY config.ini .
 

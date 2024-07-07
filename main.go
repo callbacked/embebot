@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"regexp"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
@@ -22,11 +21,11 @@ type MatchConfig struct {
 var (
 	matchConfig []MatchConfig
 	config      *ini.File
+	dg          *discordgo.Session
 )
 
 func init() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
-
 	if err := godotenv.Load(); err != nil {
 		log.Println("Error loading .env file:", err)
 	}
@@ -41,7 +40,6 @@ func init() {
 		log.Fatal("Error parsing match.json file:", err)
 	}
 
-	// Load INI config
 	config, err = ini.Load("config.ini")
 	if err != nil {
 		log.Fatal("Error loading config.ini file:", err)
@@ -58,24 +56,43 @@ func init() {
 			}
 		}
 	}
-}
 
-func main() {
+	initDatabase()
+
 	token := os.Getenv("DISCORD_BOT_TOKEN")
 	if token == "" {
 		log.Fatal("No Discord bot token provided")
 	}
 
-	dg, err := discordgo.New("Bot " + token)
+	dg, err = discordgo.New("Bot " + token)
 	if err != nil {
 		log.Fatal("Error creating Discord session:", err)
 	}
 
 	dg.AddHandler(messageCreate)
+	dg.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+		if i.Type == discordgo.InteractionApplicationCommand {
+			if h, ok := commandHandlers[i.ApplicationCommandData().Name]; ok {
+				h(s, i)
+			}
+		} else if i.Type == discordgo.InteractionApplicationCommandAutocomplete {
+			data := i.ApplicationCommandData()
+			if data.Name == "enable" || data.Name == "disable" {
+				for _, option := range data.Options {
+					if option.Name == "service" {
+						handleServiceAutocomplete(s, i, option)
+						return
+					}
+				}
+			}
+		}
+	})
 
 	dg.Identify.Intents = discordgo.IntentsGuildMessages
+}
 
-	err = dg.Open()
+func main() {
+	err := dg.Open()
 	if err != nil {
 		log.Fatal("Error opening connection:", err)
 	}
@@ -95,46 +112,44 @@ func main() {
 		log.Println("Error updating status:", err)
 	}
 
-	// Wait here until CTRL-C or other term signal is received.
+	log.Println("Registering slash commands...")
+	commands, err := dg.ApplicationCommandBulkOverwrite(dg.State.User.ID, "", []*discordgo.ApplicationCommand{
+		{
+			Name:        "enable",
+			Description: "Enable embed services",
+			Options: []*discordgo.ApplicationCommandOption{
+				{
+					Type:         discordgo.ApplicationCommandOptionString,
+					Name:         "service",
+					Description:  "Service to enable",
+					Required:     true,
+					Autocomplete: true,
+				},
+			},
+		},
+		{
+			Name:        "disable",
+			Description: "Disable embed services",
+			Options: []*discordgo.ApplicationCommandOption{
+				{
+					Type:         discordgo.ApplicationCommandOptionString,
+					Name:         "service",
+					Description:  "Service to disable",
+					Required:     true,
+					Autocomplete: true,
+				},
+			},
+		},
+		{
+			Name:        "settings",
+			Description: "Shows the current embed settings for this server",
+		},
+	})
+	if err != nil {
+		log.Fatalf("Error registering slash commands: %v", err)
+	}
+	log.Printf("Registered %d slash commands", len(commands))
+
 	fmt.Println("Bot is now running. Press CTRL-C to exit.")
 	select {}
-}
-
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	if m.Author.ID == s.State.User.ID {
-		return
-	}
-
-	var responses []string
-
-	for _, item := range matchConfig {
-		pattern := regexp.MustCompile(item.Pattern)
-		matches := pattern.FindAllString(m.Content, -1)
-
-		for _, match := range matches {
-			vxURL := strings.Replace(match, item.BaseLink, item.VxLink, 1)
-			log.Printf("Sending %s link: %s", item.VxLink, vxURL)
-			responses = append(responses, fmt.Sprintf("[⠀](%s)", vxURL))
-		}
-	}
-
-	if len(responses) > 0 {
-		go suppressEmbed(s, m.ID, m.ChannelID)
-
-		response := strings.Join(responses, " ")
-		_, err := s.ChannelMessageSendComplex(m.ChannelID, &discordgo.MessageSend{
-			Content: response,
-			Reference: &discordgo.MessageReference{
-				MessageID: m.ID,
-				ChannelID: m.ChannelID,
-				GuildID:   m.GuildID,
-			},
-			AllowedMentions: &discordgo.MessageAllowedMentions{
-				Parse: []discordgo.AllowedMentionType{},
-			},
-		})
-		if err != nil {
-			log.Printf("Error sending message: %v", err)
-		}
-	}
 }
