@@ -16,5 +16,5 @@ COPY match.json .
 COPY config.ini .
 
 
-RUN go build 
-RUN go run .
+RUN go build -o main .
+CMD ["./main"]
