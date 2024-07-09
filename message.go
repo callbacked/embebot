@@ -30,7 +30,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if len(responses) > 0 {
-		go suppressEmbed(s, m.ID, m.ChannelID)
+		attemptSuppressEmbed(s, m.ID, m.ChannelID)
 		response := strings.Join(responses, " ")
 		_, err := s.ChannelMessageSendComplex(m.ChannelID, &discordgo.MessageSend{
 			Content: response,
@@ -47,4 +47,5 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			log.Printf("Error sending message: %v", err)
 		}
 	}
+	verifyEmbedSuppression(s, m.ID, m.ChannelID)
 }
