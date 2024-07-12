@@ -1,2 +1,4 @@
 .env
 embebot
+*.py
+*.ogg

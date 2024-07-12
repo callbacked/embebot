@@ -19,7 +19,6 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if !getServerSettingFromDB(m.GuildID, strings.ReplaceAll(item.BaseLink, ".com", "")) {
 			continue
 		}
-
 		pattern := regexp.MustCompile(item.Pattern)
 		matches := pattern.FindAllString(m.Content, -1)
 		for _, match := range matches {
@@ -31,6 +30,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if len(responses) > 0 {
 		attemptSuppressEmbed(s, m.ID, m.ChannelID)
+		go verifyEmbedSuppression(s, m.ID, m.ChannelID)
 		response := strings.Join(responses, " ")
 		_, err := s.ChannelMessageSendComplex(m.ChannelID, &discordgo.MessageSend{
 			Content: response,
@@ -43,9 +43,10 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 				Parse: []discordgo.AllowedMentionType{},
 			},
 		})
+
 		if err != nil {
 			log.Printf("Error sending message: %v", err)
+			return
 		}
 	}
-	verifyEmbedSuppression(s, m.ID, m.ChannelID)
 }
