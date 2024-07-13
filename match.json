@@ -10,7 +10,7 @@
         "vx_link": "vxtwitter.com"
     },
     {
-        "pattern": "https?://(?:(?:www|vm)\\.)?tiktok\\.com/[\\w\\-\\_]+/?",
+        "pattern": "https?://(?:www\\.|vm\\.)?tiktok\\.com/(?:@[\\w\\-]+/video/\\d+|t/[\\w\\-]+)/?",
         "base_link": "tiktok.com",
         "vx_link": "vxtiktok.com"
     },
